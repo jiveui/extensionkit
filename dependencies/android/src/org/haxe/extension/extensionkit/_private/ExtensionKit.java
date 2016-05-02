@@ -6,6 +6,7 @@ import java.util.Queue;
 
 import org.haxe.extension.extensionkit.FileUtils;
 import org.haxe.extension.extensionkit.Trace;
+import org.haxe.extension.Extension;
 import org.haxe.lime.HaxeObject;
 
 import android.content.Intent;
@@ -96,7 +97,7 @@ public class ExtensionKit extends org.haxe.extension.Extension
         
         final String argsJSON = new Gson().toJson(args);
 
-        ((ViewGroup) mainView).post(new Runnable() {
+        Extension.callbackHandler.post(new Runnable() {
             @Override
             public void run() {
                 s_haxeCallbackObjectForDispatchingEvents.call3(s_haxeCallbackFunctionNameForDispatchingEvents, eventDispatcherId, eventClassSpec, argsJSON);
